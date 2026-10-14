@@ -1,0 +1,49 @@
+# Python & Virtual Environments
+backend/venv/
+venv/
+*.pyc
+__pycache__/
+.pytest_cache/
+*.pyo
+*.pyd
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment secrets & local config
+backend/.env
+.env
+.env.local
+*.log
+
+# Node & Frontend dependencies
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE & Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
