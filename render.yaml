@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: taskflow-ai-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/analytics/summary
+    autoDeploy: true
+    envVars:
+      - key: PROJECT_NAME
+        value: TaskFlow AI
+      - key: DATABASE_NAME
+        value: taskflow_ai
+      - key: AI_PROVIDER
+        value: gemini
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
