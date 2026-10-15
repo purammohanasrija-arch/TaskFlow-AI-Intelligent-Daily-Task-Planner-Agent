@@ -395,6 +395,11 @@ class SQLiteDatabase:
             self._collections[name] = SQLiteCollection(self, name)
         return self._collections[name]
 
+    def __getattr__(self, name: str) -> SQLiteCollection:
+        if name.startswith("_"):
+            raise AttributeError(name)
+        return self[name]
+
     @property
     def admin(self):
         class AdminMock:
