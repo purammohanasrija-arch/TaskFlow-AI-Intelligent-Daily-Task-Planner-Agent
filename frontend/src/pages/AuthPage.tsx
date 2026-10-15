@@ -48,6 +48,22 @@ export const AuthPage: React.FC<AuthPageProps> = ({
     }
   };
 
+  const handleDemoLogin = async () => {
+    setEmail('demo.student@taskflow.ai');
+    setPassword('TaskFlowDemo2026!');
+    setError(null);
+    setLoading(true);
+
+    try {
+      await login({ email: 'demo.student@taskflow.ai', password: 'TaskFlowDemo2026!' });
+      onSuccess();
+    } catch (err: any) {
+      setError(err.message || 'Demo login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-ivory-50 dark:bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 selection:bg-brand-primary/20">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
@@ -173,6 +189,25 @@ export const AuthPage: React.FC<AuthPageProps> = ({
                 'Create Account'
               )}
             </button>
+
+            {isLogin && (
+              <div className="pt-2">
+                <div className="relative flex py-2 items-center">
+                  <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+                  <span className="flex-shrink mx-2 text-[10px] text-slate-400 uppercase tracking-wider">or instant demo</span>
+                  <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleDemoLogin}
+                  disabled={loading}
+                  className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl border border-dashed border-brand-primary/60 dark:border-brand-primary/40 bg-brand-primary/5 dark:bg-brand-primary/10 text-brand-primary dark:text-emerald-400 text-xs font-semibold hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20 transition-all cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-brand-primary" />
+                  <span>One-Click Demo Login (demo.student@taskflow.ai)</span>
+                </button>
+              </div>
+            )}
           </form>
 
           <div className="mt-6 text-center text-xs">
