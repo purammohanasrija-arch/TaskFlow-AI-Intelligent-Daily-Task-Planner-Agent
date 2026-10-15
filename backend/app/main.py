@@ -56,6 +56,18 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 
+# Root endpoint
+@app.get("/", tags=["System"])
+async def root():
+    return {
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "status": "online",
+        "docs": "/docs",
+        "health": "/api/health"
+    }
+
+
 # Health check
 @app.get("/api/health", tags=["System"])
 async def health_check():

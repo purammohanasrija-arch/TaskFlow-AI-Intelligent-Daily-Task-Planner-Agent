@@ -14,7 +14,9 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     
     # Database
-    MONGODB_URI: str = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
+    DATABASE_TYPE: str = os.getenv("DATABASE_TYPE", "sqlite")  # "sqlite" (default zero-config) or "mongodb"
+    SQLITE_PATH: str = os.getenv("SQLITE_PATH", "taskflow.db")
+    MONGODB_URI: str = os.getenv("MONGODB_URI", "")
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "taskflow_ai")
     
     # CORS

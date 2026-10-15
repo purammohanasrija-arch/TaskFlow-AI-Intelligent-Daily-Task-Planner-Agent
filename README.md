@@ -81,7 +81,7 @@ graph TD
 ### Stack Components:
 - **Frontend**: React 18/19, Vite, TypeScript, Tailwind CSS, Lucide Icons, Framer Motion, Recharts, Canvas-Confetti.
 - **Backend**: Python 3.12, FastAPI, Pydantic v2, Motor (Async MongoDB), PyJWT, Bcrypt, HTTPX, Uvicorn.
-- **Database**: MongoDB (Local port 27017 or MongoDB Atlas).
+- **Database**: SQLite (Default zero-config embedded file `taskflow.db` requiring no external server) or optional MongoDB Atlas.
 - **AI Engine**: Google Gemini API (`google-genai` / `gemini-2.5-flash`), Groq API (`llama-3.3-70b-versatile`), with built-in heuristic offline intelligence fallback.
 
 ---
@@ -91,7 +91,7 @@ graph TD
 ### Prerequisites
 - **Node.js** (v18+) and **npm**
 - **Python** (3.10+)
-- **MongoDB** running locally on port 27017, or a MongoDB Atlas URI
+- *No database installation required! SQLite runs embedded out of the box.*
 
 ---
 
@@ -148,8 +148,14 @@ Copy `backend/.env.example` to `backend/.env`:
 ```env
 PROJECT_NAME="TaskFlow AI"
 SECRET_KEY="your-super-secret-jwt-key"
-MONGODB_URI="mongodb://localhost:27017"
-DATABASE_NAME="taskflow_ai"
+
+# Database (SQLite is default: zero-config, embedded, works out of the box)
+DATABASE_TYPE="sqlite"
+SQLITE_PATH="taskflow.db"
+
+# Optional: External MongoDB Atlas
+# DATABASE_TYPE="mongodb"
+# MONGODB_URI="mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/taskflow_ai?retryWrites=true&w=majority"
 
 # Optional AI Providers:
 # Set your Gemini API Key to activate Google Gemini 2.5 Flash:

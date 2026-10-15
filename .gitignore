@@ -29,6 +29,10 @@ backend/.env
 .env
 .env.local
 *.log
+*.db
+*.db-wal
+*.db-shm
+*.sqlite*
 
 # Node & Frontend dependencies
 frontend/node_modules/
